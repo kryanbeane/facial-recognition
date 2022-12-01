@@ -1,0 +1,5 @@
+opencv-python~=4.6.0.66
+numpy==1.23.5
+Flask~=2.2.2
+eventlet~=0.33.2
+waitress~=2.1.2
