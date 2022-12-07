@@ -16,13 +16,12 @@ images_path = 'images'
 images = []
 image_names = []
 image_list = os.listdir(images_path)
-
 print("http://" + myIpAddress + ":8080")
 
 # Adding images from directory to the image array and adding the names to the name array
 for image in image_list:
-    currentImage = cv2.imread(f'{images_path}/{image}')
-    images.append(currentImage)
+    current_image = cv2.imread(f'{images_path}/{image}')
+    images.append(current_image)
     image_names.append(os.path.splitext(image)[0].upper())
 
 
@@ -90,7 +89,6 @@ def video_feed():
 
 @app.route('/')
 def index():
-    # Video streaming Home Page
     return render_template('index.html')
 
 
@@ -99,4 +97,4 @@ def run():
 
 
 if __name__ == '__main__':
-    socketioApp.run(app)
+    run()

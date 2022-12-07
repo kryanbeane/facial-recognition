@@ -1,15 +1,27 @@
-<body>
+<!DOCTYPE html>
+<html>
     <head>
-        <meta charset="UTF-8">
-        <title>LiveStreaming</title>
+        <title>Live Streaming</title>
+        <link rel="stylesheet" type="text/css" href="./style.css">
     </head>
-    <h1>User Is Live</h1>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8  offset-lg-2">
-                <h3 class="mt-5">Live Streaming</h3>
-                <img src="{{ url_for('video_feed') }}" width="100%" alt="">
-            </div>
+    <body>
+        <div class="top-bar">
+            <ul>
+                <li><a href="#" class="logo">My Website</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
         </div>
-    </div>
-</body>
+        <div class="image">
+            <img src="{{ url_for('video_feed') }}" >
+        </div>
+        <div class="buttons">
+            <button>Follow</button>
+            <button>Share</button>
+            <button>Chat</button>
+        </div>
+
+
+
+    </body>
+</html>
