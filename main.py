@@ -36,10 +36,12 @@ def find_encodings(images_list):
     return encoding_list
 
 
-def recognise_faces():
-    encode_list_known = find_encodings(images)
-    capture = cv2.VideoCapture(0)
+encode_list_known = find_encodings(images)
 
+capture = cv2.VideoCapture(0)
+
+
+def recognise_faces():
     while True:
         success, img = capture.read()
 
@@ -53,29 +55,29 @@ def recognise_faces():
         for encoded_face, face_location in zip(current_frame_encoding, current_frame_faces):
             matches = face_rec.compare_faces(encode_list_known, encoded_face)
             face_distance = face_rec.face_distance(encode_list_known, encoded_face)
-            print(face_distance)
+            # print(face_distance)
 
             match_index = np.argmin(face_distance)
 
             if matches[match_index]:
                 name = image_names[match_index].upper()
-                print(name)
+                # print(name)
 
                 y1, x2, y2, x1 = face_location
                 y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
                 cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0))
                 cv2.rectangle(img, (x1, y2 - 35), (x2, y2), (0, 255, 0), cv2.FILLED)
-                cv2.putText(img, name, (x1 + 6, y2 + 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
+                cv2.putText(img, name, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
         # cv2.imshow('Webcam', img)
         # cv2.waitKey(1)
-        ret, buffer = cv2.imencode('.jpg', img)  # convert capture to jpg for browser
+        ret, buffer = cv2.imencode('.jpg', img)  # convert to jpg format for browser
         img = buffer.tobytes()
         # concatenate frames and output
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + img + b'\r\n')
 
-        if cv2.waitKey(1) == ord('q'):  # break loop if q pressed
+        if cv2.waitKey(1) == ord('q'):
             break
 
     capture.release()  # turn off cam
@@ -97,4 +99,4 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    socketioApp.run(app)
