@@ -59,6 +59,7 @@ def recognise_faces():
 
             match_index = np.argmin(face_distance)
 
+            # If a known face is detected
             if matches[match_index]:
                 name = image_names[match_index].upper()
                 # print(name)
@@ -68,6 +69,14 @@ def recognise_faces():
                 cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0))
                 cv2.rectangle(img, (x1, y2 - 35), (x2, y2), (0, 255, 0), cv2.FILLED)
                 cv2.putText(img, name, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+            # If an unknown face is detected
+            else:
+                # Draw a red box around the face
+                y1, x2, y2, x1 = face_location
+                y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
+                cv2.rectangle(img, (x1, y1), (x2, y2), (0, 0, 255))
+                cv2.rectangle(img, (x1, y2 - 35), (x2, y2), (0, 0, 255), cv2.FILLED)
+                cv2.putText(img, "Unknown", (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
         # cv2.imshow('Webcam', img)
         # cv2.waitKey(1)
