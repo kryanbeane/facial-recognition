@@ -1,10 +1,7 @@
-import eventlet
 import socketio
-
 from main import app
 from waitress import serve
 import socket
-
 
 sio = socketio.Server()
 appServer = socketio.WSGIApp(sio, app)

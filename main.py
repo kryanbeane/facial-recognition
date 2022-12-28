@@ -1,4 +1,6 @@
 import os
+import threading
+
 import cv2
 import numpy as np
 import face_recognition as face_rec
@@ -24,20 +26,19 @@ for image in image_list:
     images.append(current_image)
     image_names.append(os.path.splitext(image)[0].upper())
 
+encoding_list = []
 
-def find_encodings(images_list):
-    encoding_list = []
+def find_encodings():
 
     # Convert each image to RGB, encode the images, and add the encoded images to the list
-    for img in images_list:
+    for img in images:
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         encoding = face_rec.face_encodings(img)[0]
         encoding_list.append(encoding)
-    return encoding_list
 
 
-encode_list_known = find_encodings(images)
-
+encoding_thread = threading.Thread(target=find_encodings)
+encoding_thread.start()
 capture = cv2.VideoCapture(0)
 
 
@@ -53,22 +54,21 @@ def recognise_faces():
         current_frame_encoding = face_rec.face_encodings(image_small, current_frame_faces)
 
         for encoded_face, face_location in zip(current_frame_encoding, current_frame_faces):
-            matches = face_rec.compare_faces(encode_list_known, encoded_face)
-            face_distance = face_rec.face_distance(encode_list_known, encoded_face)
-            # print(face_distance)
+            matches = face_rec.compare_faces(encoding_list, encoded_face)
+            face_distance = face_rec.face_distance(encoding_list, encoded_face)
 
             match_index = np.argmin(face_distance)
 
             # If a known face is detected
             if matches[match_index]:
                 name = image_names[match_index].upper()
-                # print(name)
 
                 y1, x2, y2, x1 = face_location
                 y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
                 cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0))
                 cv2.rectangle(img, (x1, y2 - 35), (x2, y2), (0, 255, 0), cv2.FILLED)
                 cv2.putText(img, name, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+
             # If an unknown face is detected
             else:
                 # Draw a red box around the face
@@ -78,8 +78,6 @@ def recognise_faces():
                 cv2.rectangle(img, (x1, y2 - 35), (x2, y2), (0, 0, 255), cv2.FILLED)
                 cv2.putText(img, "Unknown", (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
-        # cv2.imshow('Webcam', img)
-        # cv2.waitKey(1)
         ret, buffer = cv2.imencode('.jpg', img)  # convert to jpg format for browser
         img = buffer.tobytes()
         # concatenate frames and output
