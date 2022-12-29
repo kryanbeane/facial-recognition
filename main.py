@@ -1,6 +1,5 @@
 import os
 import threading
-
 import cv2
 import numpy as np
 import face_recognition as face_rec
@@ -28,8 +27,8 @@ for image in image_list:
 
 encoding_list = []
 
-def find_encodings():
 
+def find_encodings():
     # Convert each image to RGB, encode the images, and add the encoded images to the list
     for img in images:
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -76,7 +75,7 @@ def recognise_faces():
                 y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
                 cv2.rectangle(img, (x1, y1), (x2, y2), (0, 0, 255))
                 cv2.rectangle(img, (x1, y2 - 35), (x2, y2), (0, 0, 255), cv2.FILLED)
-                cv2.putText(img, "Unknown", (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+                cv2.putText(img, "UNKNOWN", (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
         ret, buffer = cv2.imencode('.jpg', img)  # convert to jpg format for browser
         img = buffer.tobytes()
