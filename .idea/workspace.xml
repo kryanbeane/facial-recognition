@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="59c5cada-dbc7-49e6-aeab-251143944a36" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/karyn.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/laura.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/dominik.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/dominik.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/michael.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/michael.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -162,7 +162,10 @@
       <workItem from="1671745500673" duration="1383000" />
       <workItem from="1672151182015" duration="13307000" />
       <workItem from="1672327471419" duration="2222000" />
-      <workItem from="1672335809728" duration="2161000" />
+      <workItem from="1672335809728" duration="3057000" />
+      <workItem from="1672347465727" duration="643000" />
+      <workItem from="1672684707238" duration="599000" />
+      <workItem from="1673458804510" duration="3000" />
     </task>
     <servers />
   </component>
@@ -181,7 +184,7 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/facial_recognition$server.coverage" NAME="server Coverage Results" MODIFIED="1672347711432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/facial_recognition$main.coverage" NAME="main Coverage Results" MODIFIED="1669914009197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/facial_recognition$server.coverage" NAME="server Coverage Results" MODIFIED="1672327624828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
